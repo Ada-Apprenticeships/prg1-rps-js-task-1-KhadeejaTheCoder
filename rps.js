@@ -1,51 +1,22 @@
+const rules = {
+  rock: { scissors: 'player1', paper: 'player2', lizard: 'player1', spock: 'player2' },
+  paper: { rock: 'player1', scissors: 'player2', lizard: 'player2', spock: 'player1' },
+  scissors: { rock: 'player2', paper: 'player1', lizard: 'player1', spock: 'player2' },
+  lizard: { rock: 'player2', paper: 'player1', scissors: 'player2', spock: 'player1' },
+  spock: { rock: 'player1', paper: 'player2', scissors: 'player1', lizard: 'player2' }
+};
+
 function rockPaperScissors(player1, player2) {
-  if ((player1 === player2)) {
+  const validMoves = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+  
+  if (!validMoves.includes(player1) || !validMoves.includes(player2)) {
+    throw new Error("Invalid move");
+  }
+
+  if (player1 === player2) {
     return "draw";
-
-  } else if (player1 === "rock" && player2 === "scissors") {
-    return "player1";
-  } else if (player1 === "rock" && player2 === "paper") {
-    return "player2";
-  } else if (player1 === "rock" && player2 === "lizard") {
-    return "player1";
-  } else if (player1 === "rock" && player2 === "spock") {
-    return "player2";
-
-  } else if (player1 === "paper" && player2 === "rock") {
-    return "player1";
-  } else if (player1 === "paper" && player2 === "scissors") {
-    return "player2";
-  } else if (player1 === "paper" && player2 === "lizard") {
-    return "player2";
-  } else if (player1 === "paper" && player2 === "spock") {
-    return "player2";
-
-  } else if (player1 === "scissors" && player2 === "rock") {
-    return "player2";
-  } else if (player1 === "scissors" && player2 === "paper") {
-    return "player1";
-  } else if (player1 === "scissors" && player2 === "lizard") {
-    return "player1";
-  } else if (player1 === "scissors" && player2 === "spock") {
-    return "player2";
-
-  } else if (player1 === "lizard" && player2 === "rock") {
-    return "player2";
-  } else if (player1 === "lizard" && player2 === "paper") {
-    return "player1";
-  } else if (player1 === "lizard" && player2 === "scissors") {
-    return "player2";
-  } else if (player1 === "lizard" && player2 === "spock") {
-    return "player1";
-
-  } else if (player1 === "spock" && player2 === "rock") {
-    return "player1";
-  } else if (player1 === "spock" && player2 === "paper") {
-    return "player2";
-  } else if (player1 === "spock" && player2 === "scissors") {
-    return "player1";
-  } else if (player1 === "spock" && player2 === "lizard") {
-    return "player2";
+  } else {
+    return rules[player1][player2];
   }
 }
 
