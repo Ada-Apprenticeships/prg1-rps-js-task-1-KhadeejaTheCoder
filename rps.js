@@ -1,22 +1,18 @@
 const rules = {
-  rock: { scissors: 'player1', paper: 'player2', lizard: 'player1', spock: 'player2' },
-  paper: { rock: 'player1', scissors: 'player2', lizard: 'player2', spock: 'player1' },
-  scissors: { rock: 'player2', paper: 'player1', lizard: 'player1', spock: 'player2' },
-  lizard: { rock: 'player2', paper: 'player1', scissors: 'player2', spock: 'player1' },
-  spock: { rock: 'player1', paper: 'player2', scissors: 'player1', lizard: 'player2' }
+  rock: ["scissors", "lizard"],
+  paper: ["rock", "spock"],
+  scissors: ["paper", "lizard"],
+  lizard: ["paper", "spock"],
+  spock: ["rock", "scissors"],
 };
 
 function rockPaperScissors(player1, player2) {
-  const validMoves = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
-  
-  if (!validMoves.includes(player1) || !validMoves.includes(player2)) {
-    throw new Error("Invalid move");
-  }
-
   if (player1 === player2) {
     return "draw";
+  } else if (rules[player1].includes(player2)) {
+    return "player1";
   } else {
-    return rules[player1][player2];
+    return "player2";
   }
 }
 
